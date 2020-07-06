@@ -11,23 +11,9 @@
         <a-asset-item id="vr-obj" src="gcm50.obj"></a-asset-item>
         <a-asset-item id="vr-mtl" src="gcm50.mtl"></a-asset-item>
   </a-assets>
-    <a-scene embedded arjs="debugUIEnabled:false;" cursor="rayOrigin:mouse">
-
-      <a-entity id="ground"
-                geometry="primitive: circle; radius: 5;"
-                rotation="-90 0 0"
-                material="shader: flat; color: #ECECEC"></a-entity>
-
-      <a-sky color="#00111a"></a-sky>
-      <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
-      <a-light type="ambient" color="#fff"></a-light>
-
-
-      <a-entity id="vr" position="0 1.7 0" scale="0.4 0.4 0.4" rotation ="0 -270 20"
-  animation__vr_rotation="property:rotation; from:0 -290 20; to:0 70 20; dur:8000; easing:linear; loop:true;">
-  <a-obj-model src="#vr-obj" mtl="#vr-mtl" shadow="receive: true"></a-obj-model>
-</a-entity>
-      
+    <a-scene>
+      <a-obj-model position="0 0.5 -5" src="#vr-obj" mtl="#vr-mtl"></a-obj-model>
+      <a-sky color="#ECECEC"></a-sky>
     </a-scene>
 
     
