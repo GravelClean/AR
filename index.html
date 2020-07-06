@@ -1,51 +1,33 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CG モデルを登場させる</title>
-  </head>
-  <body style="margin:0px; overflow:hidden;">
-    <!-- A-Frame ライブラリの読み込み -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <!-- AR.js ライブラリの読み込み -->
+    <title>A-Frame X'mas</title>
+    <meta name="description" content="X'mas - A-Frame">
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body>
+    <a-scene embedded arjs="debugUIEnabled:false;" cursor="rayOrigin:mouse">
 
-    <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
-    <a-scene embedded arjs="debugUIEnabled:false;">
+      <a-entity id="ground"
+                geometry="primitive: circle; radius: 5;"
+                rotation="-90 0 0"
+                material="shader: flat; color: #ECECEC"></a-entity>
 
-      <!-- OBJ形式のCGモデルの読み込み -->
-      <a-assets>
-        <a-asset-item id="obj" src="GCM50.obj"></a-asset-item>   <!-- objファイル -->
-        <a-asset-item id="mtl" src="GCM50.mtl"></a-asset-item>   <!-- mtlファイル -->
-      </a-assets>
-
-      <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
-      <a-marker preset="hiro">
-        <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示） -->
-        <a-box position="0 0.5 0" wireframe="true"></a-box>
-      </a-marker>
-
-      <!-- マーカーを登録（プリセットされている「kanji」マーカー） -->
-      <a-marker preset="kanji">
-        <!-- マーカーの場所に OBJ 形式の 3DCG を置く -->
-        <a-obj-model
-          src="#obj"
-          mtl="#mtl"
-          scale="0.005 0.005 0.005"
-          position="0 0.5 0">
-          <a-animation
-            attribute="rotation"
-            to="0 360 0"
-            dur="3000"
-            easing="linear"
-            repeat="indefinite">
-          </a-animation>
-        </a-obj-model>
-      </a-marker>
-
-      <!-- AR用のカメラを置く -->
-      <a-entity camera></a-entity>
+      <a-sky color="#00111a"></a-sky>
+      <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+      <a-light type="ambient" color="#fff"></a-light>
     </a-scene>
+    <a-assets>
+  <a-asset-item id="vr-obj" src="GCM50.obj"></a-asset-item>
+  <a-asset-item id="vr-mtl" src="GCM50.mtl"></a-asset-item>
+</a-assets>
+
+<a-entity id="vr" position="0 1.7 0" scale="0.4 0.4 0.4" rotation ="0 -270 20"
+  animation__vr_rotation="property:rotation; from:0 -290 20; to:0 70 20; dur:8000; easing:linear; loop:true;">
+  <a-obj-model src="#vr-obj" mtl="#vr-mtl" shadow="receive: true"></a-obj-model>
+</a-entity>
+    
+    
   </body>
 </html>
